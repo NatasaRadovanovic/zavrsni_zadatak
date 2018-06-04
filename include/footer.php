@@ -16,12 +16,14 @@
     <!-- Custom styles for this template -->
     <link href="styles/blog.css" rel="stylesheet">
 </head>
+
 <body>
+
 <footer class="blog-footer">
     <p>Blog template built for <a href="https://getbootstrap.com/">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a>.</p>
     <p>
         <a href="#">Back to top</a>
     </p>
 </footer>
-</body>
-</html>
+ </body>
+<html>

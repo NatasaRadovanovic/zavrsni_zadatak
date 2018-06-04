@@ -18,9 +18,6 @@
 </head>
 
 <body>
-<main role="main" class="container">
-
-<div class="row">
 
 <aside class="col-sm-3 ml-sm-auto blog-sidebar">
             <div class="sidebar-module sidebar-module-inset">
@@ -54,9 +51,9 @@
             </div>
         
         </aside><!-- /.blog-sidebar -->
-    
-    </div><!-- /.row -->
+       
 
-</main><!-- /.container -->
+
 </body>
 </html>
+    

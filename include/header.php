@@ -18,7 +18,6 @@
 </head>
 
 <body>
-
 <header>
     <div class="blog-masthead">
         <div class="container">
@@ -40,4 +39,5 @@
     </div>
 </header>
 </body>
-<html>
+</html>
+
