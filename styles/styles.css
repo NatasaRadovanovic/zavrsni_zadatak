@@ -1,0 +1,17 @@
+html{
+    font-size: 14px;
+}
+
+.blog-masthead{
+    background-color:  #b34848;
+}
+
+h1,h2,h3{
+    color:#b34848
+
+}
+
+.blog-post a h2:hover{
+    text-decoration: underline;
+    color: #b34848;
+}
