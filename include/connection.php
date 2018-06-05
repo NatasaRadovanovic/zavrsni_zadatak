@@ -13,4 +13,15 @@
     {
         echo $e->getMessage();
     }
+
+    function database($sql,$connection,$fetch){
+        $sql;
+        $statement = $connection->prepare($sql);
+        $statement->execute();
+    
+        $statement->setFetchMode(PDO::FETCH_ASSOC);
+    
+        
+        return $statement->$fetch();
+    }
 ?>

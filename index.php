@@ -1,6 +1,7 @@
 <?php
     //dodavanje konekcije sa bazom podataka
-    include('connection.php');
+    include('include/connection.php');
+    
     //dodavanje hedera
     include('include/header.php');
 ?>
@@ -8,41 +9,28 @@
 
 <?php
 
-
-$sql = "SELECT * FROM posts ORDER BY posts.created_at DESC";
-$statement = $connection->prepare($sql);
-
-
-$statement->execute();
-
-
-$statement->setFetchMode(PDO::FETCH_ASSOC);
-
-
-$posts = $statement->fetchAll();
-
-
-    //var_dump($posts);
-    echo '</pre>';
+    $sql = "SELECT * FROM posts ORDER BY posts.created_at DESC";
+    $posts = database($sql,$connection,'fetchAll');
 
 ?>
-
-
 
 <main role="main" class="container">
 
     <div class="row">
 
         <div class="col-sm-8 blog-main">
-        <?php 
-    foreach($posts as $post){
-        ?>
+       
+            <?php 
+    
+            foreach($posts as $post){
+        
+            ?>
 
             <div class="blog-post">
-               <a href='single-post.php'> <h2 class="blog-post-title"><?php echo($post['Title'])?></h2></a>
+                <a href="single-post.php?Id=<?php echo($post['Id']) ?>"> <h2 class="blog-post-title"><?php echo($post['Title'])?></h2></a>
                 <p class="blog-post-meta"><?php echo($post['Created_at'])?>by <a href="#"><?php echo($post['Author'])?></a></p>
-
                 <p><?php echo($post['Body'])?></p>
+            
             </div><!-- /.blog-post -->
 
             <?php  } ?>
