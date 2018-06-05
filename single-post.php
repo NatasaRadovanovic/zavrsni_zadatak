@@ -10,10 +10,17 @@ if(isset($_GET['Id'])){
    
     $sql = "SELECT p.Title,p.Body, p.Author, p.Created_at, c.Author as comment_author, c.Text
            FROM posts as p INNER JOIN comments as c ON p.id = c.Post_id WHERE c.Post_id = {$_GET['Id']}";
-     //$sql = "SELECT * FROM posts INNER JOIN comments ON posts.Id = comments.Post_id WHERE posts.Id = {$_GET['Id']}";
-     $singlePost = database($sql, $connection,'fetch');
      
-
+     $singlePost = database($sql, $connection,'fetchAll');
+   
+     $comments = [];
+     $count = count($singlePost);
+     
+    for($i = 0; $i < $count; $i++){
+        $comments[$i]['comment_author'] = $singlePost[$i]['comment_author'];
+        $comments[$i]['Text'] = $singlePost[$i]['Text'];
+    }
+  
 ?>
     <main role="main" class="container">
 
@@ -23,18 +30,15 @@ if(isset($_GET['Id'])){
             
             <div class="blog-post">
                 
-                <h2 class="blog-post-title"><?php echo $singlePost['Title'];?></h2>
-                <p class="blog-post-meta"><?php echo $singlePost['Created_at']; ?> by <a href="#"><?php echo $singlePost['Author']?></a></p>
-                <p><?php echo $singlePost['Body']; ?></p>
+                <h2 class="blog-post-title"><?php echo $singlePost[0]['Title'];?></h2>
+                <p class="blog-post-meta"><?php echo $singlePost[0]['Created_at']; ?> by <a href="#"><?php echo $singlePost[0]['Author']?></a></p>
+                <p><?php echo $singlePost[0]['Body']; ?></p><br>
 
                 <h3>Comments</h3>
 
-                <?php 
+                <?php
                 
-                $comments = database($sql, $connection,'fetchAll');
-                
-                   
-                    foreach($comments as $comment){
+                foreach($comments as $comment){
 
                 ?>
                 <p><?php echo $comment['comment_author'] ?><p>
