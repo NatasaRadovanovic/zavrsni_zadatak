@@ -9,7 +9,7 @@
 if(isset($_GET['Id'])){
    
     $sql = "SELECT p.Title,p.Body, p.Author, p.Created_at, c.Author as comment_author, c.Text
-           FROM posts as p INNER JOIN comments as c ON p.id = c.Post_id WHERE c.Post_id = {$_GET['Id']}";
+           FROM posts as p LEFT JOIN comments as c ON p.id = c.Post_id WHERE p.id = {$_GET['Id']}";
      
      $singlePost = database($sql, $connection,'fetchAll');
    
