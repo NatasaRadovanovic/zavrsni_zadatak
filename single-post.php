@@ -34,8 +34,11 @@ if(isset($_GET['Id'])){
                 <p class="blog-post-meta"><?php echo $singlePost[0]['Created_at']; ?> by <a href="#"><?php echo $singlePost[0]['Author']?></a></p>
                 <p><?php echo $singlePost[0]['Body']; ?></p><br>
 
-                <h3>Comments</h3>
-
+                <button id ='showHide' class ='btn btn-default'>Hide comments</button><br/><br/>
+                
+            <div id ='showHideComm'>
+                
+                <h3>Comments</h3><br/>
                 <?php
                 
                 foreach($comments as $comment){
@@ -48,7 +51,12 @@ if(isset($_GET['Id'])){
                 </ul>
                 
                 <hr>
+            
                     <?php }
+
+                ?>
+            </div> <!-- showHide -->
+                <?php
                     }else{
                         echo "post id is not passt by url";
                     }
@@ -68,7 +76,9 @@ if(isset($_GET['Id'])){
 
    
       
+<script src = 'main.js'>
 
+</script>
   <?php       
    
     include('include/footer.php');
