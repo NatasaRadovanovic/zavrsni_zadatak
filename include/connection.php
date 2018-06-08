@@ -1,4 +1,6 @@
 <?php
+// Konekcija sa bazom podataka
+    
     $servername = "127.0.0.1";
     $username = "root";
     $password = "vivify";
@@ -17,6 +19,7 @@
     function database($sql,$connection,$fetch){
         $sql;
         $statement = $connection->prepare($sql);
+         // izvrsavamo upit
         $statement->execute();
     
         $statement->setFetchMode(PDO::FETCH_ASSOC);

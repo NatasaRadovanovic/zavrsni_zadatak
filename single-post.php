@@ -62,7 +62,7 @@ if(isset($_GET['Id'])){
                 <?php
                 echo '<br>';
            
-                
+               //brisanje cele sekcije komentara ako nema ni jednog komentara 
             if($comments[0]['Author'] == "" && $comments[0]['Text'] == ""){
                 ?> <h4>There are currently no comments</h4>
                 <style type="text/css">#emptyComm{

@@ -7,6 +7,7 @@ if(!isset($_POST['deleteComm'])){
     $postId = $_POST['post_id'];
     $commentId = $_POST['comment_id'];
 
+//kreiranje upita za brisanje komentara
  $sql = "DELETE FROM comments where Id={$commentId}";
     $statement = $connection->prepare($sql);
     $statement->execute();

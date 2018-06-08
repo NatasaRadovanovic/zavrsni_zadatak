@@ -7,22 +7,24 @@
     $limitPosts = database($sql, $connection,'fetchAll');
 ?>
 <aside class="col-sm-3 ml-sm-auto blog-sidebar">
-            <div class="sidebar-module sidebar-module-inset">
-                <h4>Latest posts</h4>
+    <div class="sidebar-module sidebar-module-inset">
+        <h4>Latest posts</h4>
 
-                <?php 
-                foreach($limitPosts as $post){
-                    //var_dump($limitPosts);
-                ?>
-                <p><a href =single-post.php?Id=<?php echo $post['Id'] ?>><?php echo $post['Title'] ?></a></p>
+<?php 
+        
+ foreach($limitPosts as $post){
+                   
+?>
+     <p>
+        <a href =single-post.php?Id=<?php echo $post['Id'] ?>><?php echo $post['Title'] ?></a>
+    </p>
             
-
-            <?php 
-             }
-            ?>
+ <?php 
+    }
+?>
            
-           </div>
-        </aside><!-- /.blog-sidebar -->
+     </div>
+ </aside><!-- /.blog-sidebar -->
        
        
 
