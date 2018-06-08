@@ -37,22 +37,25 @@ if(isset($_GET['Id'])){
                 <p class="blog-post-meta"><?php echo $singlePost[0]['Created_at']; ?> by <a href="#"><?php echo $singlePost[0]['Author']?></a></p>
                 <p><?php echo $singlePost[0]['Body']; ?></p><br>
 
+                <form action='delete-post.php' method='POST' onsubmit="return checkDel()">
+               <input type ='hidden' name='post_id' value="<?php echo $_GET['Id']?>">
+               <input  type = 'submit' class="btn btn-primary" name='postDel' value='Delete post'>
+               </form><br>
 
-            <form action = 'create-comment.php' method='POST'>
-           <label>Name:</label><br>
-           <input class="form-control" type ='text' name ='name'><br>
-           <label>Comment:</label><br>
-           <textarea class="form-control" name ='comment' cols ='50', rows='5'></textarea><br>
+ 
+            <form action = 'create-comment.php' method='POST'  onsubmit = "return validationComm()">
+           <input class="form-control" id='nameComm' type ='text' name ='name'placeholder='name'><br>
+           <textarea class="form-control" id='txtComm'  name ='comment' cols ='50', rows='5' placeholder="comment"></textarea><br>
            <input type='hidden' name='id' value = "<?php echo $_GET['Id']?>" >
           
     
         <?php 
             if(isset($_GET['error']) && $_GET['error'] == 1){
-              echo  "<div class='alert alert-danger'><p>Please fill in all the required fields</p></div>";
+              echo  "<div id= 'alertComm' class='alert alert-danger'><p>Please fill in all the required fields</p></div>";
          
             }
         ?>
-    <input class="btn btn-success" type ='submit' name='submit' value ='send'><br>
+    <input class="btn btn-success" type ='submit' name='submit' value ='Send'><br>
            </form>
 
                 <?php
@@ -82,14 +85,14 @@ if(isset($_GET['Id'])){
                
                 <ul>
                     <li>
-                    <p><?php echo $comment['comment_author'] ?><p>
+                    <p><span><?php echo $comment['comment_author'] ?></span><p>
                     <?php echo $comment['Text']?>
 
                     <form action='delete-comment.php' method='POST'>
                     <input type ='hidden' name='post_id' value = "<?php echo $_GET['Id'] ?>">
                     <input type = 'hidden' name='comment_id' value ="<?php echo $comment['Id'] ?>">
 
-                    <input type ='submit' name='deleteComm' value='delete'  class='btn-danger btn-sm' id='delete'>
+                    <input type ='submit' name='deleteComm' value='Delete'  class='btn-danger btn-sm' id='delete'>
                     </form>
                     </li>
                     

@@ -12,6 +12,41 @@ btn.addEventListener('click',function(){
     }
 })
 
+function checkDel(){ 
+    let check = confirm("Do you really want to delete this post?")
+
+    if(check){
+        return true;
+    }else{
+        return false;
+    }
+}
+
+function validationComm(){
+    let name = document.getElementById('nameComm');
+    let comment = document.getElementById('txtComm');
+    let alertMsg = document.getElementById('alertComm')
+
+    if(name.value == '' || comment.value == ''){
+        alertMsg.style.display='block';
+        return false;
+        
+    }
+}
+
+function validationPost(){
+    let author = document.getElementById('authorPost');
+    let title = document.getElementById('titlePost');
+    let post = document.getElementById('bodyPost');
+    let alertMsg = document.getElementById('alertPost');
+
+    if(author.value == '' || title.value == '' || post.value == ''){
+        alertMsg.style.display='block';
+        
+        return false;
+      
+    }
+}
 
 
 

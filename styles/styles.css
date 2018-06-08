@@ -16,6 +16,23 @@ h1,h2,h3,h4{
     color: #b34848;
 }
 
-.btn-danger{
-    margin-left: 20%;
+
+
+#delete{
+    margin-top:-35px;
+    float: right;
+    width: 55px;
+    font-size: 0.8rem;
+    text-align: center;
+    
+}
+
+#showHideComm ul {
+    list-style: none;
+}
+
+   
+#showHideComm ul li p span {
+   font-weight: bold;
+   font-size: 1.2rem;
 }
