@@ -9,19 +9,20 @@
 
 if(isset($_GET['Id'])){
     
+    $sql = "SELECT c.Id,c.Author,p.Title,p.Body, u.first_name, u.last_name , p.Created_at,c.Text
+    FROM posts as p inner JOIN users as u ON u.id = p.User_id 
+    left join comments AS c ON c.Post_id = p.Id where p.id = {$_GET['Id']}";
    
-    $sql = "SELECT p.Title,p.Body, p.Author, p.Created_at, c.Author as comment_author, c.Text,c.Id
-           FROM posts as p LEFT JOIN comments as c ON p.id = c.Post_id WHERE p.id = {$_GET['Id']}";
+    $singlePost = database($sql, $connection,'fetchAll');
      
-     $singlePost = database($sql, $connection,'fetchAll');
    
      $comments = [];
      $count = count($singlePost);
      
     for($i = 0; $i < $count; $i++){
         $comments[$i]['Id'] = $singlePost[$i]['Id'];
-        $comments[$i]['comment_author'] = $singlePost[$i]['comment_author'];
-        $comments[$i]['Text'] = $singlePost[$i]['Text'];
+        $comments[$i]['Author'] = $singlePost[$i]['Author'];
+       $comments[$i]['Text'] = $singlePost[$i]['Text'];
     }
   
 ?>
@@ -34,7 +35,7 @@ if(isset($_GET['Id'])){
             <div class="blog-post">
                 
                 <h2 class="blog-post-title"><?php echo $singlePost[0]['Title'];?></h2>
-                <p class="blog-post-meta"><?php echo $singlePost[0]['Created_at']; ?> by <a href="#"><?php echo $singlePost[0]['Author']?></a></p>
+                <p class="blog-post-meta"><?php echo $singlePost[0]['Created_at']; ?> by <a href="#"><?php echo $singlePost[0]['first_name']." ". $singlePost[0]['last_name']?></a></p>
                 <p><?php echo $singlePost[0]['Body']; ?></p><br>
 
                 <form action='delete-post.php' method='POST' onsubmit="return checkDel()">
@@ -61,8 +62,8 @@ if(isset($_GET['Id'])){
                 <?php
                 echo '<br>';
            
-                // sakrij sekiciju komentara ako nema komentara
-            if($comments[0]['comment_author'] == "" && $comments[0]['Text'] == ""){
+                
+            if($comments[0]['Author'] == "" && $comments[0]['Text'] == ""){
                 ?> <h4>There are currently no comments</h4>
                 <style type="text/css">#emptyComm{
                 display:none;
@@ -78,14 +79,14 @@ if(isset($_GET['Id'])){
                 
                 <h3>Comments</h3><br/>
                 <?php
-                
+               
                 foreach($comments as $comment){
                  ?>
                
                
                 <ul>
                     <li>
-                    <p><span><?php echo $comment['comment_author'] ?></span><p>
+                    <p><span><?php echo $comment['Author'] ?></span><p>
                     <?php echo $comment['Text']?>
 
                     <form action='delete-comment.php' method='POST'>

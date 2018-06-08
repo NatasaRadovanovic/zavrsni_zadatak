@@ -5,10 +5,6 @@
 <?php
     $sql = 'SELECT * FROM posts ORDER BY posts.Created_at DESC LIMIT 5';
     $limitPosts = database($sql, $connection,'fetchAll');
-
-    
-
-    
 ?>
 <aside class="col-sm-3 ml-sm-auto blog-sidebar">
             <div class="sidebar-module sidebar-module-inset">

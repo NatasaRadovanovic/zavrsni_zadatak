@@ -16,7 +16,7 @@
         }else{
             
          
-            $sql = "INSERT INTO posts (Title,Body,Author) VALUES ('$title','$newPost','$author')";
+            $sql = "INSERT INTO posts (Title,Body,User_id) VALUES ('$title','$newPost','$author')";
     
             $statement = $connection->prepare($sql);
             $statement->execute();
